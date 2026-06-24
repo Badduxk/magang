@@ -1,21 +1,8 @@
 # -*- coding: utf-8 -*-
-<<<<<<< HEAD
-
-class WhatsAppService:
-    """Placeholder service untuk WhatsApp notifications."""
-
-    def send_message(self, phone_number, message):
-        raise NotImplementedError
-
-    def send_payslip_whatsapp(self, payslip_id):
-        raise NotImplementedError
-
-=======
 import logging
 
 import requests
 
-# pyrefly: ignore [missing-import]
 from odoo import models, api, _
 
 _logger = logging.getLogger(__name__)
@@ -163,4 +150,3 @@ class WhatsAppService(models.AbstractModel):
                     'WhatsApp gateway request failed for number %s: %s',
                     number, str(e),
                 )
->>>>>>> b86b2d617809ec4af00d64846d68a94259ce2543

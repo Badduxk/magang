@@ -1,15 +1,22 @@
 # -*- coding: utf-8 -*-
-<<<<<<< HEAD
+import json
+import logging
 
 from odoo import http
-from odoo.http import request
+from odoo.http import request, Response
+
+_logger = logging.getLogger(__name__)
+
+# -------------------------------------------------------------------
+# API Token for machine authentication
+# In production, store this in ir.config_parameter or a secrets vault.
+# -------------------------------------------------------------------
+API_TOKEN_PARAM_KEY = 'hris.fingerprint_api_token'
+DEFAULT_API_TOKEN = 'hris-fingerprint-secret-token-change-me'
 
 
 class HrisAttendanceController(http.Controller):
-    """Scaffolding controller untuk endpoint Attendance sesuai API_CONTRACT.
-
-    Catatan: placeholder (belum implementasi bisnis lengkap) agar struktur backend siap.
-    """
+    """Controller untuk endpoint Attendance sesuai API_CONTRACT (self-service)."""
 
     @http.route('/api/v1/attendance/me', type='json', auth='none', methods=['GET'], csrf=False)
     def attendance_me(self, **kwargs):
@@ -35,24 +42,6 @@ class HrisAttendanceController(http.Controller):
             'errors': [],
         }
 
-=======
-import json
-import logging
-
-# pyrefly: ignore [missing-import]
-from odoo import http
-# pyrefly: ignore [missing-import]
-from odoo.http import request, Response
-
-_logger = logging.getLogger(__name__)
-
-# -------------------------------------------------------------------
-# API Token for machine authentication
-# In production, store this in ir.config_parameter or a secrets vault.
-# -------------------------------------------------------------------
-API_TOKEN_PARAM_KEY = 'hris.fingerprint_api_token'
-DEFAULT_API_TOKEN = 'hris-fingerprint-secret-token-change-me'
-
 
 class AttendanceController(http.Controller):
     """
@@ -63,10 +52,6 @@ class AttendanceController(http.Controller):
       - Delegate all business logic to the service layer
       - Format and return HTTP responses
     """
-
-    # ==================================================================
-    # Routes
-    # ==================================================================
 
     @http.route(
         '/api/v1/fingerprint/push',
@@ -96,7 +81,6 @@ class AttendanceController(http.Controller):
         Returns:
             JSON response with processing summary.
         """
-        # --- 1. Extract payload ---
         payload = request.jsonrequest
         if not payload:
             return self._error_response(
@@ -105,7 +89,6 @@ class AttendanceController(http.Controller):
                 400,
             )
 
-        # --- 2. Authenticate token ---
         token = payload.get('token', '')
         if not self._validate_token(token):
             _logger.warning('Fingerprint push: invalid API token attempt.')
@@ -115,7 +98,6 @@ class AttendanceController(http.Controller):
                 401,
             )
 
-        # --- 3. Validate payload structure ---
         logs = payload.get('logs', [])
         if not isinstance(logs, list) or not logs:
             return self._error_response(
@@ -124,7 +106,6 @@ class AttendanceController(http.Controller):
                 400,
             )
 
-        # --- 4. Delegate to service layer ---
         try:
             service = request.env['hris.attendance.service'].sudo()
             result = service.process_bulk_fingerprint_logs(logs)
@@ -138,7 +119,6 @@ class AttendanceController(http.Controller):
                 500,
             )
 
-        # --- 5. Return success response ---
         return {
             'status': 'success',
             'message': 'Fingerprint logs processed successfully.',
@@ -160,18 +140,13 @@ class AttendanceController(http.Controller):
             'version': '1.0.0',
         }
 
-    # ==================================================================
+    # ------------------------------------------------------------------
     # Private helpers
-    # ==================================================================
+    # ------------------------------------------------------------------
 
     def _validate_token(self, token):
-        """
-        Validate the API token against the configured system parameter.
-        Falls back to DEFAULT_API_TOKEN if no parameter is set.
-        """
         if not token:
             return False
-
         expected_token = (
             request.env['ir.config_parameter']
             .sudo()
@@ -181,7 +156,6 @@ class AttendanceController(http.Controller):
 
     @staticmethod
     def _error_response(code, message, http_status=400):
-        """Build a standardized error response dict."""
         return {
             'status': 'error',
             'error': {
@@ -189,4 +163,3 @@ class AttendanceController(http.Controller):
                 'message': message,
             },
         }
->>>>>>> b86b2d617809ec4af00d64846d68a94259ce2543

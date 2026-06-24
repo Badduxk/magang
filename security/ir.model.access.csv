@@ -1,16 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-<<<<<<< HEAD
 access_hr_employee_group_hris_employee,hris_employee: hr.employee (Employee),hr.model_hr_employee,hris_core.group_hris_employee,1,0,0,0
 access_hr_employee_group_hris_hr_admin,hris_employee: hr.employee (HR Admin),hr.model_hr_employee,hris_core.group_hris_hr_admin,1,1,1,1
 access_hr_department_group_hris_employee,hris_employee: hr.department (Employee),hr.model_hr_department,hris_core.group_hris_employee,1,0,0,0
 access_hr_department_group_hris_hr_admin,hris_employee: hr.department (HR Admin),hr.model_hr_department,hris_core.group_hris_hr_admin,1,1,1,1
 access_hr_work_location_group_hris_employee,hris_employee: hr.work.location (Employee),hr.model_hr_work_location,hris_core.group_hris_employee,1,0,0,0
 access_hr_work_location_group_hris_hr_admin,hris_employee: hr.work.location (HR Admin),hr.model_hr_work_location,hris_core.group_hris_hr_admin,1,1,1,1
-
-=======
 access_hris_fingerprint_log_user,hris.fingerprint.log.user,model_hris_fingerprint_log,base.group_user,1,1,1,0
 access_hris_fingerprint_log_manager,hris.fingerprint.log.manager,model_hris_fingerprint_log,hr_attendance.group_hr_attendance_manager,1,1,1,1
 access_hris_pph21_ter_table_user,hris.pph21.ter.table.user,model_hris_pph21_ter_table,base.group_user,1,0,0,0
 access_hris_pph21_ter_table_manager,hris.pph21.ter.table.manager,model_hris_pph21_ter_table,hr.group_hr_user,1,1,1,1
 access_hr_payslip,access_hr_payslip,model_hr_payslip,hr.group_hr_user,1,1,1,1
->>>>>>> b86b2d617809ec4af00d64846d68a94259ce2543

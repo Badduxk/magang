@@ -1,37 +1,7 @@
 # -*- coding: utf-8 -*-
-<<<<<<< HEAD
-
-from odoo import http
-
-
-class HrisPayrollController(http.Controller):
-    """Scaffolding controller untuk endpoint Payroll sesuai API_CONTRACT.
-
-    Catatan: placeholder.
-    """
-
-    @http.route('/api/v1/payroll', type='json', auth='none', methods=['GET'], csrf=False)
-    def payroll_list(self, **kwargs):
-        return {
-            'success': False,
-            'message': 'Not implemented',
-            'errors': [],
-        }
-
-    @http.route('/api/v1/payroll/generate', type='json', auth='none', methods=['POST'], csrf=False)
-    def payroll_generate(self, **kwargs):
-        return {
-            'success': False,
-            'message': 'Not implemented',
-            'errors': [],
-        }
-
-=======
 import logging
 
-# pyrefly: ignore [missing-import]
 from odoo import http
-# pyrefly: ignore [missing-import]
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
@@ -44,15 +14,37 @@ DEFAULT_API_TOKEN = 'hris-payroll-secret-token-change-me'
 class PayrollController(http.Controller):
     """
     HTTP Controller for payroll computation endpoints.
-    Responsibilities:
-      - Define routes / endpoints
-      - Validate incoming HTTP requests and authentication tokens
-      - Delegate all business logic to the payroll service layer
-      - Format and return HTTP responses
+    Also includes placeholder endpoints for listing and generation.
     """
 
     # ==================================================================
-    # Routes
+    # Legacy placeholder endpoints (from HEAD)
+    # ==================================================================
+
+    @http.route('/api/v1/payroll', type='json', auth='none', methods=['GET'], csrf=False)
+    def payroll_list(self, **kwargs):
+        """
+        Placeholder for listing payroll records.
+        """
+        return {
+            'success': False,
+            'message': 'Not implemented',
+            'errors': [],
+        }
+
+    @http.route('/api/v1/payroll/generate', type='json', auth='none', methods=['POST'], csrf=False)
+    def payroll_generate(self, **kwargs):
+        """
+        Placeholder for generating payroll.
+        """
+        return {
+            'success': False,
+            'message': 'Not implemented',
+            'errors': [],
+        }
+
+    # ==================================================================
+    # Full-featured calculation endpoints (from b86b2d617...)
     # ==================================================================
 
     @http.route(
@@ -231,4 +223,3 @@ class PayrollController(http.Controller):
                 'message': message,
             },
         }
->>>>>>> b86b2d617809ec4af00d64846d68a94259ce2543

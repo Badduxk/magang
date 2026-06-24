@@ -1,28 +1,8 @@
 # -*- coding: utf-8 -*-
-<<<<<<< HEAD
-
-class AttendanceService:
-    """Placeholder service untuk attendance.
-
-    Fungsi-fungsi inti (generate summary/records, correction processing) akan diimplementasikan di tahap berikutnya.
-    """
-
-    def get_my_attendance(self, employee_id, month=None, page=1, per_page=20):
-        raise NotImplementedError
-
-    def list_attendance(self, filters, page=1, per_page=20):
-        raise NotImplementedError
-
-    def correct_attendance(self, employee_id, attendance_date, check_in, check_out, reason):
-        raise NotImplementedError
-
-=======
 import logging
 from datetime import datetime, time, timedelta
 
-# pyrefly: ignore [missing-import]
 from odoo import models, api, _
-# pyrefly: ignore [missing-import]
 from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -258,4 +238,3 @@ class AttendanceService(models.AbstractModel):
             'Updated attendance check-out for %s at %s',
             employee.name, timestamp,
         )
->>>>>>> b86b2d617809ec4af00d64846d68a94259ce2543

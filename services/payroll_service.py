@@ -1,22 +1,8 @@
 # -*- coding: utf-8 -*-
-<<<<<<< HEAD
-
-class PayrollService:
-    """Placeholder service untuk payroll."""
-
-    def list_payroll(self, filters, page=1, per_page=20):
-        raise NotImplementedError
-
-    def generate_payroll(self, month, year):
-        raise NotImplementedError
-
-=======
 import logging
 from datetime import datetime, time, timedelta
 
-# pyrefly: ignore [missing-import]
 from odoo import models, api, _
-# pyrefly: ignore [missing-import]
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -352,4 +338,3 @@ class PayrollService(models.AbstractModel):
         payslip = Payslip.create(create_vals)
         _logger.info('Created payslip %s for %s', payslip.id, employee.name)
         return payslip
->>>>>>> b86b2d617809ec4af00d64846d68a94259ce2543
