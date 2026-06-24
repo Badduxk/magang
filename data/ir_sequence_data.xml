@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_hris_employee_code" model="ir.sequence">
+            <field name="name">HRIS Employee Code</field>
+            <field name="code">hris.employee.code</field>
+            <field name="prefix">EMP-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_employee_form_inherit_hris_employee" model="ir.ui.view">
+            <field name="name">hr.employee.form.hris.employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook" position="before">
+                    <group string="Employee Codes" col="4">
+                        <field name="employee_code"/>
+                        <field name="employee_status"/>
+                        <field name="join_date"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//sheet//group[@name='private_information']" position="inside">
+                    <field name="nik"/>
+                    <field name="npwp_number"/>
+                </xpath>
+
+                <!-- Fallback for Odoo variants where private_information group name differs -->
+                <xpath expr="//sheet//group[contains(@name, 'private')]" position="inside">
+                    <field name="nik"/>
+                    <field name="npwp_number"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_hr_employee_tree_inherit_hris_employee" model="ir.ui.view">
+            <field name="name">hr.employee.tree.hris.employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="inside">
+                    <field name="employee_code"/>
+                    <field name="employee_type"/>
+                    <field name="employee_status"/>
+                    <field name="join_date"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_hr_employee_search_inherit_hris_employee" model="ir.ui.view">
+            <field name="name">hr.employee.search.hris.employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter string="Employee Type: Tetap" name="filter_employee_type_tetap" domain="[('employee_type', '=', 'tetap')]"/>
+                    <filter string="Employee Type: Freelance" name="filter_employee_type_freelance" domain="[('employee_type', '=', 'freelance')]"/>
+                    <filter string="Employee Status: Active" name="filter_employee_status_active" domain="[('employee_status', '=', 'active')]"/>
+                    <filter string="Employee Status: Inactive" name="filter_employee_status_inactive" domain="[('employee_status', '=', 'inactive')]"/>
+                    <filter string="Employee Status: Resigned" name="filter_employee_status_resigned" domain="[('employee_status', '=', 'resigned')]"/>
+                    <field name="department_id" filter_domain="[('department_id','!=',False)]"/>
+
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
