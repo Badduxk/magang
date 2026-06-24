@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hris_fingerprint_log_user,hris.fingerprint.log.user,model_hris_fingerprint_log,base.group_user,1,1,1,0
+access_hris_fingerprint_log_manager,hris.fingerprint.log.manager,model_hris_fingerprint_log,hr_attendance.group_hr_attendance_manager,1,1,1,1
+access_hris_pph21_ter_table_user,hris.pph21.ter.table.user,model_hris_pph21_ter_table,base.group_user,1,0,0,0
+access_hris_pph21_ter_table_manager,hris.pph21.ter.table.manager,model_hris_pph21_ter_table,hr.group_hr_user,1,1,1,1
+access_hr_payslip,access_hr_payslip,model_hr_payslip,hr.group_hr_user,1,1,1,1
